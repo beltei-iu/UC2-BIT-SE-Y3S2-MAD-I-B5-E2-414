@@ -1,53 +1,32 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
-}
+  // Create Control
+  final text = Text("Welcome to BELTEI");
+  final logo = Image.asset("assets/images/logo.png");
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // Create Layout
+  final layout = Center(
+    child: logo,
+  );
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(),
-    );
-  }
-}
+  // Create AppBar
+  final _appBar = AppBar(
+    title: Text("BookMe"),
+    elevation: 2,
+    actions: [Icon(Icons.search)],
+  );
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  // Create Screen
+  final screen = Scaffold(
+    body: layout,
+  );
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text("MAD-414"),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Text("Welcome to MAD"),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+  // Create root App
+  final app = MaterialApp(
+    theme: ThemeData(primaryColor: Colors.amber, useMaterial3: false),
+    home: screen,
+    debugShowCheckedModeBanner: false,
+  );
+  runApp(app);
 }
