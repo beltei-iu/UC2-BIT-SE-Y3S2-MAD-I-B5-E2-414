@@ -1,26 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mad/splash_screen.dart';
 
 void main() {
-  // Create Control
-  final text = Text("Welcome to BELTEI");
-  final logo = Image.asset("assets/images/logo.png");
-
-  // Create Layout
-  final layout = Center(
-    child: logo,
-  );
-
-  // Create AppBar
-  final _appBar = AppBar(
-    title: Text("BookMe"),
-    elevation: 2,
-    actions: [Icon(Icons.search)],
-  );
-
-  // Create Screen
-  final screen = Scaffold(
-    body: layout,
-  );
+  final screen = SplashScreen();
 
   // Create root App
   final app = MaterialApp(
@@ -28,5 +10,6 @@ void main() {
     home: screen,
     debugShowCheckedModeBanner: false,
   );
+
   runApp(app);
 }
