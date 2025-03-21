@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mad/routes/app_route.dart';
+import 'package:mad/screen/product_detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,35 +40,104 @@ class _HomeScreenState extends State<HomeScreen> {
       color: Colors.red,
     );
 
-    final layout = Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    // final layout = Center(
+    //   child: Column(
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     children: [
+    //       text1,
+    //       text2,
+    //       GestureDetector(
+    //         child: isLove ? icon2 : icon,
+    //         onTap: () {
+    //           setState(() {
+    //             isLove = !isLove;
+    //           });
+    //         },
+    //       )
+    //     ],
+    //   ),
+    // );
+
+    final _appBar = AppBar(
+      leading: Icon(Icons.menu),
+      elevation: 5,
+      actions: [Icon(Icons.notifications)],
+    );
+
+    final newMenu = Padding(
+      padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          text1,
-          text2,
-          GestureDetector(
-            child: isLove ? icon2 : icon,
-            onTap: () {
-              setState(() {
-                isLove = !isLove;
-              });
-            },
+          Text("ថ្មីៗ"),
+          Row(
+            children: [Text("ទាំងអស់"), Icon(Icons.navigate_next)],
           )
         ],
       ),
     );
 
-    // Create AppBar
-    final _appBar = AppBar(
-      title: Text("BookMe"),
-      elevation: 2,
-      actions: [Icon(Icons.search)],
+    List<String> productList = ["iPhone", "Sumsung", "Sony", "LG"];
+
+    final favorite = Icon(Icons.favorite);
+    final favorite2 = Icon(
+      Icons.favorite,
+      color: Colors.red,
+    );
+
+    final productNewList = productList.map((e) {
+      return GestureDetector(
+        child: Card(
+          child: Column(
+            children: [
+              Image.asset("assets/images/image.png"),
+              Text("$e"),
+              Text("1000\$"),
+              Align(
+                alignment: Alignment.centerRight,
+                child: isLove ? favorite2 : favorite,
+              )
+            ],
+          ),
+        ),
+        onTap: () {
+          // Option 1
+
+          // final route = MaterialPageRoute(
+          //     builder: (context) => ProductDetailScreen(
+          //           productName: e,
+          //         ));
+          // Navigator.push(context, route);
+
+          // Option 2
+          AppRoute.key.currentState!
+              .pushNamed(AppRoute.productDetailScreen, arguments: e);
+        },
+      );
+    }).toList();
+
+    // Option 1
+    final productNewListWidget = SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: productNewList,
+      ),
+    );
+
+    // Option 2
+    final productNewListWidget2 = Container(
+      height: 170,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        children: productNewList,
+      ),
     );
 
     // Create Screen
     final screen = Scaffold(
-      body: Column(
-        children: [topImage],
+      appBar: _appBar,
+      body: ListView(
+        children: [topImage, newMenu, productNewListWidget],
       ),
     );
     return screen;

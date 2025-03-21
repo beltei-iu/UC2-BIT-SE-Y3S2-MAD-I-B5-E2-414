@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mad/splash_screen.dart';
+import 'package:mad/routes/app_route.dart';
+import 'package:mad/screen/splash_screen.dart';
 
 void main() {
   final screen = SplashScreen();
@@ -7,7 +8,20 @@ void main() {
   // Create root App
   final app = MaterialApp(
     theme: ThemeData(primaryColor: Colors.amber, useMaterial3: false),
-    home: screen,
+
+    // Option1
+    // home: screen,
+
+    // Option2
+    initialRoute: AppRoute.splashScreen,
+    onGenerateRoute: AppRoute.generateRoute,
+    navigatorKey: AppRoute.key,
+    // Option 3
+    // routes: {
+    //   "/": (contex) => SplashScreen(),
+    //   "/mainScreen": (contex) => SplashScreen(),
+    // },
+
     debugShowCheckedModeBanner: false,
   );
 

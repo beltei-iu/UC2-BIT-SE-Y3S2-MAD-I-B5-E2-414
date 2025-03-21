@@ -33,10 +33,10 @@ class _MainScreenState extends State<MainScreen> {
           icon: Icon(Icons.account_circle), label: 'Account'),
     ];
 
-    final navBar = BottomNavigationBar(
+    final _navBar = BottomNavigationBar(
       items: navBarItems,
       fixedColor: Colors.amber,
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: const Color.fromRGBO(68, 138, 255, 1),
       onTap: (index) {
         setState(() {
           _currentIndex = index;
@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
 
     final screen = Scaffold(
       body: screenList.elementAt(_currentIndex),
-      bottomNavigationBar: navBar,
+      bottomNavigationBar: _navBar,
     );
 
     return screen;
